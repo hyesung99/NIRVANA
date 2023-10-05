@@ -6,6 +6,6 @@ export const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 1000,
   headers: {
-    Authorization: 'Bearer ' + NirvanaLocalStorage.getItem('token')
+    Authorization: 'Bearer ' + NirvanaLocalStorage.getToken()
   }
 });

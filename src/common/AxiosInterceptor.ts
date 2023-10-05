@@ -15,7 +15,7 @@ const AxiosInterceptors = ({ children }: AxiosInterceptorsProps) => {
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use(
       (config) => {
-        const token = NirvanaLocalStorage.getToken('token');
+        const token = NirvanaLocalStorage.getToken();
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -30,7 +30,7 @@ const AxiosInterceptors = ({ children }: AxiosInterceptorsProps) => {
       },
       (error) => {
         if (isAxiosError(error) && error.response?.status === 401) {
-          NirvanaLocalStorage.deleteToken('token');
+          NirvanaLocalStorage.deleteToken();
           navigate('/login');
         }
         return Promise.reject(error);
@@ -42,6 +42,7 @@ const AxiosInterceptors = ({ children }: AxiosInterceptorsProps) => {
       axiosInstance.interceptors.response.eject(responseInterceptor);
     };
   }, []);
+  return children;
 };
 
 export default AxiosInterceptors;
