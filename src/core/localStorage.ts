@@ -1,10 +1,9 @@
-export const getItem = (key: string) => {
+export const getItem = (key: string, defaultValue?: unknown) => {
   const value = localStorage.getItem(key);
-  if (value) {
-    return JSON.parse(value);
-  } else {
-    throw new Error('No such key in localStorage');
+  if (!value && !defaultValue) {
+    throw new Error('No value found');
   }
+  return value ? JSON.parse(value) : defaultValue;
 };
 
 export const setItem = (key: string, value: unknown) => {

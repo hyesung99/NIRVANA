@@ -17,6 +17,13 @@ const postLike = async (postId: string, token: string) => {
   return response.data;
 };
 
+export const advancedPostLike = async(postId: string) => {
+  const {data} = await axiosInstance.post<Like>(
+    END_POINTS.POST_LIKE,{ postId }
+  );
+  return data
+}
+
 const deleteLike = async (postId: string, token: string) => {
   const response = await axios.delete<Like>(`${API_BASE_URL}/likes/delete`, {
     data: { id: postId },
@@ -27,11 +34,5 @@ const deleteLike = async (postId: string, token: string) => {
   return response.data;
 };
 
-export const advancedPostLike = async(postId: string) => {
-  const {data} = await axiosInstance.post<Like>(
-    END_POINTS.POST_LIKE,{ postId }
-  );
-  return data
-}
 
 export { postLike, deleteLike };

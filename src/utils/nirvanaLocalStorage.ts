@@ -7,8 +7,10 @@ const _NIRVANA_LOCAL_STORAGE_KEYS = {
 
 type NirvanaStorageKeys = keyof typeof _NIRVANA_LOCAL_STORAGE_KEYS;
 
-export const nirvanaLocalStorage = {
+const NirvanaLocalStorage = {
   getItem: (key: NirvanaStorageKeys) => getItem(key),
   setItem: (key: NirvanaStorageKeys, value: unknown) => setItem(key, value),
   deleteItem: (key: NirvanaStorageKeys) => deleteItem(key)
 };
+
+export default NirvanaLocalStorage;
