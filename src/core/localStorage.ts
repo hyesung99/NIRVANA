@@ -1,4 +1,4 @@
-export const getItem = (key: string, defaultValue?: unknown) => {
+export const getItem = <T>(key: string, defaultValue?: T): T => {
   const value = localStorage.getItem(key);
   if (!value && !defaultValue) {
     throw new Error('No value found');
